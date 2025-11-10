@@ -31,6 +31,13 @@ INSTALLED_APPS = [
     'Auth',
 ]
 
+# for create jwt token automatically
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'corsheaders.middleware.CorsMiddleware',
@@ -42,9 +49,20 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
 CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'backend.urls'
+
+
+PASSWORD_HASHERS = [
+        "django.contrib.auth.hashers.BCryptSHA256PasswordHasher",
+        "django.contrib.auth.hashers.PBKDF2PasswordHasher",
+        "django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher",
+        "django.contrib.auth.hashers.Argon2PasswordHasher",
+        "django.contrib.auth.hashers.ScryptPasswordHasher",
+    ]
+
 
 TEMPLATES = [
     {
